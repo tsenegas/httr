@@ -82,6 +82,11 @@ parsers$`application/x-www-form-urlencoded` <- function(x, encoding = NULL,
   parse_query(parse_text(x, encoding = "UTF-8"))
 }
 
+parsers$`application/octet-stream` <- function(x, encoding = NULL, type = NULL, ...) {
+    need_package("qs")
+    qs::qread(x)
+}
+
 # Text formats -----------------------------------------------------------------
 parsers$`image/jpeg` <- function(x, type = NULL, encoding = NULL, ...) {
   need_package("jpeg")
